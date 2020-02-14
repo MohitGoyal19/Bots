@@ -60,8 +60,9 @@ def main():
 
     tg_token = '1028458800:AAGwFb8FXj52fwD0wFsPdnOoLT2nBO4qnqg'
     tg_bot = TelegramBot(tg_token)
-    updates = tg_bot.get_updates(60)
-    tg_bot.parse(updates, fl_bot)
+    while True:
+        updates = tg_bot.get_updates(60)
+        tg_bot.parse(updates, fl_bot)
 
 if __name__ == '__main__':
     main()

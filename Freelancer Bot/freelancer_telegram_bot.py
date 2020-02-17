@@ -1,6 +1,7 @@
 # -*-coding: utf-8-*-
 
 import requests
+import time
 
 class FreelancerBot():
     token = ''
@@ -11,8 +12,9 @@ class FreelancerBot():
         self.token = token
         self.headers = {'freelancer-oauth-v1': self.token}
 
-    def get_projects(self, query, count=10):
-        url = self.url + '?query={}&count={}'.format(query, count)
+    def get_projects(self, query):
+        epoch_time = int(time.time()) - 86400
+        url = self.url + '?query={}&from_time='.format(query, epoch_time)
         projects = requests.get(url, headers=self.headers).json()['result']['projects']
         project_urls = ['https://www.freelancer.com/projects/' + project['seo_url'] for project in projects]
 
@@ -41,7 +43,7 @@ class TelegramBot():
 
     def parse(self, updates, fl_bot):
         for update in updates['result']:
-            self.update_id = update['update_id']
+            self.update_id = update['update_id'] + 1
             in_message = update['message']['text']
             if '/' == in_message[0]:
                 return

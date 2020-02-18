@@ -5,7 +5,7 @@ import time
 
 class FreelancerBot():
     token = ''
-    url = 'https://www.freelancer.com/api/projects/0.1/projects/all/'
+    url = 'https://www.freelancer.com/api/projects/0.1/projects/active/'
     headers = ''
 
     def __init__(self, token):
@@ -16,9 +16,14 @@ class FreelancerBot():
         epoch_time = int(time.time()) - 86400
         url = self.url + '?query={}&from_time='.format(query, epoch_time)
         projects = requests.get(url, headers=self.headers).json()['result']['projects']
-        project_urls = ['https://www.freelancer.com/projects/' + project['seo_url'] for project in projects]
+        project_urls = ['https://www.freelancer.com/projects/' + project['id'] for project in projects]
 
-        return project_urls
+        projects = []
+        for project in project_urls:
+            if not project in projects:
+                projects.append(project)
+
+        return projects
 
 
 class TelegramBot():

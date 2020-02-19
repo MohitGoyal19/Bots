@@ -12,9 +12,9 @@ class FreelancerBot():
         self.token = token
         self.headers = {'freelancer-oauth-v1': self.token}
 
-    def get_projects(self, query):
+    def get_projects(self, query, count=10):
         epoch_time = int(time.time()) - 86400
-        url = self.url + '?query={}&from_time='.format(query, epoch_time)
+        url = self.url + '?query={}&from_time={}&count={}'.format(query, epoch_time, count)
         projects = requests.get(url, headers=self.headers).json()['result']['projects']
         project_urls = ['https://www.freelancer.com/projects/' + project['id'] for project in projects]
 

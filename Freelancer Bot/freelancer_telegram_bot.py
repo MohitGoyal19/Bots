@@ -1,4 +1,4 @@
-# -*-coding: utf-8-*-
+# -*- coding: utf-8 -*-
 
 import requests
 import time
@@ -14,9 +14,9 @@ class FreelancerBot():
 
     def get_projects(self, query, count=10):
         epoch_time = int(time.time()) - 86400
-        url = self.url + '?query={}&from_time={}&count={}'.format(query, epoch_time, count)
+        url = self.url + '?query={}&count={}&from_time={}'.format(query, count, epoch_time)
         projects = requests.get(url, headers=self.headers).json()['result']['projects']
-        project_urls = ['https://www.freelancer.com/projects/' + project['id'] for project in projects]
+        project_urls = ['https://www.freelancer.com/projects/' + str(project['id']) for project in projects]
 
         projects = []
         for project in project_urls:
@@ -37,6 +37,7 @@ class TelegramBot():
 
     def get_updates(self, timeout=None):
         url = self.url + '/getUpdates?offset={}&timeout={}'.format(self.update_id, timeout)
+        print(requests.get(url).json())
 
         return requests.get(url).json()
 
@@ -65,14 +66,14 @@ def main():
     fl_token = 'ft0V3ui5QSMXbEQzRi8dDXCWtnBCcu'
     fl_bot = FreelancerBot(fl_token)
 
-    tg_token = '1028458800:AAGwFb8FXj52fwD0wFsPdnOoLT2nBO4qnqg'
+    tg_token = '986536342:AAEUbcb6ztr5sgNJ5Sn0wpiCL6hZfcw2Hv8'
     tg_bot = TelegramBot(tg_token)
     while True:
         try:
             updates = tg_bot.get_updates(60)
             tg_bot.parse(updates, fl_bot)
-        except:
-            pass
+        except Exception as e:
+            print(e)
 
 if __name__ == '__main__':
     main()

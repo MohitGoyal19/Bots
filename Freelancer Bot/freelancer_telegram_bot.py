@@ -63,10 +63,10 @@ class TelegramBot():
 
 
 def main():
-    fl_token = 'ft0V3ui5QSMXbEQzRi8dDXCWtnBCcu'
+    fl_token = ''
     fl_bot = FreelancerBot(fl_token)
 
-    tg_token = '986536342:AAEUbcb6ztr5sgNJ5Sn0wpiCL6hZfcw2Hv8'
+    tg_token = ''
     tg_bot = TelegramBot(tg_token)
     while True:
         try:

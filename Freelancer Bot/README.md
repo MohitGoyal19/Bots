@@ -1,4 +1,4 @@
-Freelancer Bot
+<h3>Freelancer Bot</h3>
 
 These bots are for fetching data from Freelancer API about the project related to the given keywords from Telegram and sending results back to Telegram and Google Sheets.
 

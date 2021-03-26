@@ -53,7 +53,7 @@ def to_sheets(keyword):
 
 
 def main():
-    fl_token = 'ft0V3ui5QSMXbEQzRi8dDXCWtnBCcu'
+    fl_token = ''
     fl_bot = FreelancerBot(fl_token)
 
     keywords = ['scraping', 'betting']

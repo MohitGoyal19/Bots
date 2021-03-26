@@ -78,10 +78,10 @@ def to_sheets():
 
 
 def main():
-    fl_token = 'ft0V3ui5QSMXbEQzRi8dDXCWtnBCcu'
+    fl_token = ''
     fl_bot = FreelancerBot(fl_token)
 
-    tg_token = '1126244697:AAE2XpTb-7iKeEcdAWSy8mPL_HJWTmDTIYE'
+    tg_token = ''
     tg_bot = TelegramBot(tg_token)
 
     output = pd.DataFrame(columns=[
